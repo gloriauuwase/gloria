@@ -2,11 +2,8 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import cors from 'cors';
 
 dotenv.config();
-
-console.log(process.env.SERVER_PORT);
 
 import {
   getUsers,
@@ -24,12 +21,6 @@ import {
 } from './database.js';
 
 const app = express();
-
-app.use(
-  cors({
-    origin: 'http://127.0.0.1:5500',
-  })
-);
 
 app.use(express.json());
 
@@ -140,6 +131,6 @@ app.put('/students/:id', authToken, async (req, res) => {
   res.send('Student updated');
 });
 
-app.listen(process.env.SERVER_PORT, function () {
+app.listen(process.env.SERVER_PORT , function () {
   console.log(`App listening on port ${process.env.SERVER_PORT}`);
 });
